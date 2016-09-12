@@ -3,4 +3,4 @@
 > This is for Pocketmine-MP, Genisys and ClearSky
 
 ## Travis CI
-[![Travis-CI](https://img.shields.io/travis.org/ParkChanSol/CSMine.svg?)](https://travis-ci.org/ParkChanSol/CSMine)
+[![Travis-CI](https://img.shields.io/travis/ParkChanSol/CSMine.svg)](https://travis-ci.org/ParkChanSol/CSMine)
