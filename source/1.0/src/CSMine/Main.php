@@ -10,6 +10,8 @@ use pocketmine\event\block\BlockBreakEvent;
 use onebone\economyapi\EconomyAPI;
 use ifteam\SimpleArea\SimpleArea;
 use pocketmine\entity\Item;
+use pocketmine\math\Vector3;
+
 class Main extends PluginBase implements Listener {
 	public function onLoad() {
 		$this->getLogger()->info(TextFormat::AQUA . "CSBLOCK 플러그인을 로드하고 있습니다");
