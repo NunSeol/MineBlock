@@ -7,10 +7,10 @@ use pocketmine\event\Listener;
 use pocketmine\utils\TextFormat;
 use pocketmine\block\Block;
 use pocketmine\event\block\BlockBreakEvent;
-use onebone\economyapi\EconomyAPI;
-use ifteam\SimpleArea\SimpleArea;
 use pocketmine\entity\Item;
 use pocketmine\math\Vector3;
+
+use onebone\economyapi\EconomyAPI;
 
 class Main extends PluginBase implements Listener {
 	public function onLoad() {
