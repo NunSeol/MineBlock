@@ -9,6 +9,7 @@ use pocketmine\block\Block;
 use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\entity\Item;
 use pocketmine\math\Vector3;
+use pocketmine\utils\Config;
 
 use onebone\economyapi\EconomyAPI;
 
@@ -17,12 +18,19 @@ class Main extends PluginBase implements Listener {
 		$this->getLogger()->info(TextFormat::AQUA . "CSBLOCK 플러그인을 로드하고 있습니다");
 	}
 	public function onEnable() {
+		$this->loadConfig();
+		$this->config = new Config ( $this->getDataFolder (). "config.yml", Config::YAML );
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 		$this->getLogger()->info(TextFormat::AQUA . "CSBLOCK 플러그인을 사용할 수 있습니다!");
 	}
+	public function loadConfig() {
+		@mkdir ( $this->getDataFolder());
+		$this->saveDefaultConfig();
+		$this->moneyblock = $this->getConfig()->get("money-block-id", "");
+	}	
 	public function BreakBlock(BlockBreakEvent $event) {
 		$player = $event->getPlayer();
-		if ($event->getBlock()->getId() == 14) {
+		if ($event->getBlock()->getId() == $this->moneyblock) {
 			$num = mt_rand(0, 50);
                         if($num>48)
                                   $this->giveMoneys($event,$player,1000);
@@ -46,7 +54,7 @@ class Main extends PluginBase implements Listener {
                 $block = $event->getBlock();
 +		$block->getLevel()->setBlock(new Vector3($block->getX(), $block->getY(), $block->getZ()), Block::get(14));
 		EconomyAPI::getInstance()->addMoney($player, num);
-                $player->removeCreativeItem(Block::get(14));
+                $player->removeCreativeItem(Block::get($this->moneyblock));
 		$event->getPlayer()->sendMessage($num . "원이 지급되었습니다!");
         }
 }
